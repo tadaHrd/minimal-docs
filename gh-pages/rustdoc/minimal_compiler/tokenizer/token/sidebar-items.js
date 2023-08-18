@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["Error","TokenValue"],"mod":["delim","ident","literal","operator","span"],"struct":["Token"]};
+window.SIDEBAR_ITEMS = {"enum":["Error","TokenValue"],"mod":["comment","delim","ident","literal","operator","span"],"struct":["Token"]};

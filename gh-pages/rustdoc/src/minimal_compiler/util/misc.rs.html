@@ -8,7 +8,6 @@
 <a href="#8" id="8">8</a>
 <a href="#9" id="9">9</a>
 <a href="#10" id="10">10</a>
-<a href="#11" id="11">11</a>
 </pre></div><pre class="rust"><code><span class="doccomment">/// Adds an `isize` to a `usize` value (checked).
 </span><span class="kw">pub fn </span>add_usize_isize(usize_val: usize, isize_val: isize) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
     <span class="kw">use </span>core::mem::transmute;
@@ -16,8 +15,7 @@
     <span class="kw">if </span>isize_val &gt;= <span class="number">0 </span>{
         <span class="kw">unsafe </span>{ usize_val.checked_add(transmute(isize_val)) }
     } <span class="kw">else </span>{
-        <span class="comment">// `usize_val` minus negative (makes it positive) `isize_val`
-        </span><span class="kw">unsafe </span>{ usize_val.checked_sub(transmute(-isize_val)) }
+        <span class="kw">unsafe </span>{ usize_val.checked_sub(transmute(isize_val.abs())) }
     }
 }
 </code></pre></div></section></main></body></html>

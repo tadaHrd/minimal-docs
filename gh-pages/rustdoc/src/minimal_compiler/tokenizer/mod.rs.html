@@ -109,12 +109,16 @@
 <a href="#109" id="109">109</a>
 <a href="#110" id="110">110</a>
 <a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
+<a href="#113" id="113">113</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! The Minimal programming language lexical analyzer.
 //!
 //! Handles parsing of tokens, contains the [`InputTextIter`] type, and the [`Tokenizer`] struct.
 
 </span><span class="kw">use </span><span class="kw">crate</span>::tokenizer::{
-    token::{delim::Delim, ident::Ident, literal, operator::Operator, span::Span},
+    token::{
+        comment::Comment, delim::Delim, ident::Ident, literal, operator::Operator, span::Span,
+    },
     tokenize::{Tokenize, TokenizeResult},
 };
 
@@ -194,7 +198,7 @@
         <span class="comment">// Comments have to go first to prevent it being treated
         // as operators.
         // TODO: create the Comment struct, implement the Tokenize trait for it, document it, remove the TODO from the below line, test it
-        </span><span class="macro">tokenize!</span>(TODO <span class="self">self </span>=&gt; Comment);
+        </span><span class="macro">tokenize!</span>(<span class="self">self </span>=&gt; Comment);
 
         <span class="comment">// Order doesn&#39;t really matter but it&#39;s best if kept
         // in this order; from least complex to most complex.

@@ -79,6 +79,9 @@
 <span class="attr">#[path = <span class="string">&quot;values/literal/mod.rs&quot;</span>]
 </span><span class="kw">pub mod </span>literal;
 
+<span class="attr">#[path = <span class="string">&quot;values/comment.rs&quot;</span>]
+</span><span class="kw">pub mod </span>comment;
+
 <span class="kw">pub mod </span>span;
 
 <span class="doccomment">/// A token, output of the tokenizer, input of the lexer.
@@ -100,18 +103,14 @@
     </span>Whitespace(char),
 
     <span class="doccomment">/// A comment.
-    </span>Comment {
-        <span class="doccomment">/// Whether or not the comment is a documentation comment.
-        </span>doc: bool,
-
-        <span class="doccomment">/// Whether or not the comment is a
-        </span>block: bool,
-    },
+    </span>Comment(comment::Comment&lt;<span class="lifetime">&#39;a</span>&gt;),
 
     <span class="doccomment">/// An indentifier or keyword.
     </span>Ident(ident::Ident&lt;<span class="lifetime">&#39;a</span>&gt;),
-    <span class="doccomment">/// A number literal, integer or floating point.
-    </span>Number(literal::Number&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;a</span>&gt;),
+    <span class="doccomment">/// A number literal (integer or floating point).
+    ///
+    /// The tokenizer **doesn&#39;t** make sure number works with its radix
+    </span>Number(literal::Number&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;a</span>&gt;),
     <span class="doccomment">/// A string literal.
     </span>String(literal::String&lt;<span class="lifetime">&#39;a</span>&gt;),
     <span class="doccomment">/// A delimiter, like brackets and colons.
@@ -129,9 +128,10 @@
     <span class="doccomment">/// An unterminated string literal.
     </span>UnterminatedStringLiteral,
 
-    <span class="doccomment">/// An invalid number suffix.
-    ///
-    /// A number cannot end with arbitrary text.
-    </span>InvalidNumberSuffix,
+    <span class="doccomment">/// No number after base prefix in number literal.
+    </span>NoNumberAfterBase,
+
+    <span class="doccomment">/// Unterminated block comment.
+    </span>UnterminatedBlockComment,
 }
 </code></pre></div></section></main></body></html>
